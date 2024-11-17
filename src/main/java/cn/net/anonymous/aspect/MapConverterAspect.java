@@ -20,7 +20,7 @@ import java.util.Map;
 @Component
 public class MapConverterAspect {
 
-    @Around("@annotation(cn.net.anonymous.annotation.ParamsToMap)")
+    @Around("@annotation(cn.net.anonymous.annotation.ParamsToMap) || @annotation(cn.net.anonymous.annotation.ResultToMap)")
     public Object around(ProceedingJoinPoint point) throws Throwable {
         MethodSignature signature = (MethodSignature) point.getSignature();
         Method method = signature.getMethod();
