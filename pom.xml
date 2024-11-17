@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>cn.net.anonymous</groupId>
+  <artifactId>aspect-demo</artifactId>
+  <version>0.0.1</version>
+  <packaging>pom</packaging>
+
+  <name>aspect-demo</name>
+  <url>https://anonymous.net.cn</url>
+
+  <dependencies>
+    <!-- lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.36</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- spring aop -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-aop</artifactId>
+      <version>2.7.18</version>
+    </dependency>
+
+    <!-- 下面依赖仅供 demo 演示, 提供 spring 容器运行和测试环境 -->
+
+    <!-- springboot -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+      <version>2.7.18</version>
+    </dependency>
+    <!-- springboot test -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <version>2.7.18</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <properties>
+    <java.version>8</java.version>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+          <compilerArgument>-parameters</compilerArgument>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
