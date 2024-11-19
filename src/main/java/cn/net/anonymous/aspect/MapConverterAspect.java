@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -20,15 +21,20 @@ import java.util.Map;
 @Component
 public class MapConverterAspect {
 
-    @Around("@annotation(cn.net.anonymous.annotation.ParamsToMap) || @annotation(cn.net.anonymous.annotation.ResultToMap)")
+    // 修改注入切面的点为: cn.net.anonymous.inject 包下，任意返回值的所有方法执行
+    @Around("execution(* cn.net.anonymous.inject.*.*(..))")
+//    @Around("@annotation(cn.net.anonymous.annotation.ParamsToMap) || @annotation(cn.net.anonymous.annotation.ResultToMap)")
     public Object around(ProceedingJoinPoint point) throws Throwable {
         MethodSignature signature = (MethodSignature) point.getSignature();
         Method method = signature.getMethod();
         Object[] args = point.getArgs();
 
         Parameter[] parameters = method.getParameters();
-        Map<String, Object> paramsMap = null;
-        Map<String, Object> resultMap = null;
+//        Map<String, Object> paramsMap = null;
+//        Map<String, Object> resultMap = null;
+
+        Map<String, Object> paramsMap = new HashMap<>();
+        Map<String, Object> resultMap = new HashMap<>();
 
         // 过滤方法是否存在 paramsMap, resultMap
         for (int i = 0; i < parameters.length; i++) {
@@ -69,6 +75,10 @@ public class MapConverterAspect {
                 }
             }
         }
+
+        System.out.println(paramsMap);
+        System.out.println(resultMap);
+
         return result;
     }
 }
